@@ -1,0 +1,116 @@
+# Context eXchange System (CXS)
+
+A lightweight, stack-agnostic framework for managing context between humans, AI agents, and tools.
+
+## Overview
+
+The Context eXchange System (CXS) provides a standardized structure for:
+- **Contracts**: Define interfaces, rules, and expectations for interactions
+- **Packs**: Bundle context, data, and dependencies for reproducible runs
+- **Sessions**: Track execution cycles and maintain state across runs
+- **Ledgers**: Record all activities for audit trails and reproducibility
+
+## Directory Structure
+
+```
+cxs/
+├── contracts/     # Contract definitions and interfaces
+├── packs/         # Context packs bundled for execution
+├── outbox/        # Output artifacts and results
+├── ledger/        # Audit logs and run history
+│   ├── runs.csv               # CSV log of all runs
+│   └── CHANGELOG_TIMELINE.md  # Append-only event log
+├── project/       # Project-specific configurations
+├── prompts/       # Prompt templates and instructions
+├── cycles/        # Cycle management
+│   └── current    # Current active cycle ID
+└── archive/       # Historical data and retired artifacts
+```
+
+## Usage
+
+### Starting a New Cycle
+
+Cycles represent discrete work sessions or iterations. To start a new cycle:
+
+```bash
+# Update the current cycle ID
+echo "cycle-002" > cxs/cycles/current
+```
+
+### Defining Contracts
+
+Contracts specify the interface and expectations for a task or interaction. Create contract files in `cxs/contracts/`:
+
+```yaml
+# Example: cxs/contracts/data-processing.yml
+name: data-processing
+version: 1.0.0
+inputs:
+  - data_source: path/to/input
+  - format: json
+outputs:
+  - processed_data: path/to/output
+  - report: path/to/report.md
+```
+
+### Creating Context Packs
+
+Context packs bundle all necessary context for reproducible execution:
+
+1. Create a pack directory: `cxs/packs/pack-YYYYMMDD-HHMMSS/`
+2. Include:
+   - Contract reference
+   - Input data or references
+   - Configuration files
+   - Dependencies manifest
+
+### Recording Runs
+
+All runs should be logged to `cxs/ledger/runs.csv`:
+
+```csv
+cycle_id,run_id,timestamp,status,description,context_pack,output_pack
+cycle-001,run-001,2025-01-15T10:30:00Z,completed,Initial data processing,pack-001,out-001
+```
+
+### Logging Events
+
+Append significant events to `cxs/ledger/CHANGELOG_TIMELINE.md`:
+
+```markdown
+## Feature: New Data Pipeline
+
+**Date:** 2025-01-15  
+**Event:** Implemented new data processing pipeline  
+**Details:** Added ETL contract and initial processing workflow.
+```
+
+## Principles
+
+1. **Stack Agnostic**: Works with any programming language or tool
+2. **Reproducible**: All runs can be recreated from context packs
+3. **Auditable**: Complete history in ledgers
+4. **Collaborative**: Clear contracts enable team coordination
+5. **Explainable**: Documentation and logs explain all decisions
+
+## Best Practices
+
+- **Version contracts**: Use semantic versioning for contract definitions
+- **Atomic packs**: Each pack should be self-contained
+- **Descriptive logs**: Include meaningful descriptions in run logs
+- **Regular archival**: Move old cycles to archive/ periodically
+- **Clear prompts**: Write explicit, unambiguous prompt templates
+
+## Getting Started
+
+1. Review sample contracts in `contracts/`
+2. Review sample prompts in `prompts/`
+3. Create your first context pack
+4. Execute and log your run
+5. Review outputs in `outbox/`
+6. Archive completed cycles when done
+
+## License
+
+MIT License - See LICENSE file for details
