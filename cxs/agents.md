@@ -1,203 +1,196 @@
-# Welcome to the Context eXchange System (CXS)
+# CXS AI Agent Reference
 
-**AI Agent Orientation Guide**
+**Context eXchange System** - Stack-agnostic infrastructure for managing context, contracts, and audit trails.
+
+---
+
+## 🎯 Token Efficiency First
+
+**⚡ IMPORTANT: CXS is designed to minimize token consumption during onboarding.**
+
+### Quick Onboarding Path (< 500 tokens)
+1. **Start here**: Read `QUICKSTART.md` (~400 tokens)
+2. **Just-in-time reading**: Load contracts/prompts only when needed
+3. **Full reference**: Read this file only if you need comprehensive details
+
+### Token Budget Strategy
+- Use `QUICKSTART.md` for immediate work
+- Read specific contracts from `contracts/` only when selecting one
+- Load prompt templates from `prompts/` only when applying them
+- Reference `project/` configs on-demand, not upfront
+- Avoid reading all files during orientation
 
 ---
 
 ## What is CXS?
 
-You are now operating within the **Context eXchange System (CXS)** - a lightweight, stack-agnostic framework designed to standardize how humans, AI agents, and tools manage context, execute workflows, and maintain audit trails across projects.
+CXS provides neutral infrastructure that any project can adopt for:
+- **📋 Contracts**: Standardized interfaces and expectations
+- **📦 Packs**: Bundled context for reproducible execution
+- **🔄 Cycles**: Tracked execution sessions with audit trails
+- **📊 Ledgers**: Historical logs for accountability
 
-CXS is **not** a domain-specific system. It is **infrastructure** - a neutral foundation that can be dropped into any project, regardless of technology stack, programming language, or business domain.
+**Key Principle**: CXS is infrastructure, not application. Maintain domain neutrality and cross-stack compatibility.
 
-## Your Role as an AI Agent
+---
 
-When working within CXS, you should:
+## Directory Reference
 
-1. **Respect the Structure**: Use the established directories and follow the documented patterns
-2. **Maintain Neutrality**: Keep all work domain-agnostic and technology-neutral
-3. **Document Everything**: Log activities, maintain audit trails, and update relevant files
-4. **Follow Contracts**: Adhere to the interface specifications defined in contracts
-5. **Preserve Context**: Bundle context appropriately for reproducibility
+| Directory | Purpose | When to Read |
+|-----------|---------|--------------|
+| `contracts/` | Interface definitions (process, analyze, document) | When selecting contract |
+| `prompts/` | Standardized templates (discover, handoff, etc.) | When needing template |
+| `project/` | Project-specific configs (manifest, policies, etc.) | If working on project tasks |
+| `packs/` | Context bundles for execution cycles | When creating/reviewing pack |
+| `cycles/` | Current cycle ID (`cycles/current`) | Always check first |
+| `ledger/` | Audit logs (`runs.csv`, `CHANGELOG_TIMELINE.md`) | When logging/reviewing |
+| `outbox/` | Output artifacts | When placing outputs |
+| `archive/` | Historical data | When archiving |
 
-## Core CXS Concepts
+---
 
-### 🏗️ **Directory Structure**
-```
-cxs/
-├── contracts/     # Interface definitions and expectations
-├── prompts/       # Standardized prompt templates  
-├── project/       # Project-specific configuration templates
-├── packs/         # Context bundles for execution cycles
-├── cycles/        # Cycle management (current active cycle)
-├── ledger/        # Audit logs and execution history
-├── outbox/        # Output artifacts and results
-└── archive/       # Historical data and retired artifacts
-```
+## Core Workflow
 
-### 📋 **Contracts** (`contracts/`)
-Contracts define interfaces, rules, and expectations for interactions. Before starting any significant work:
+1. **Check cycle**: `cat cycles/current`
+2. **Select contract**: Choose from `contracts/`
+3. **Create pack**: `packs/pack-YYYYMMDD-HHMMSS/`
+4. **Execute**: Follow contract → outputs to `outbox/`
+5. **Log**: Append to `ledger/runs.csv`
 
-1. **Review applicable contracts** in `contracts/`
-2. **Choose the appropriate contract** (process, analyze, document, or custom)
-3. **Follow the contract specification** throughout execution
-4. **Validate against contract requirements** before completion
+---
 
-Available standard contracts:
-- `process.contract` - Generic process execution
-- `analyze.contract` - Analysis and insight generation  
-- `document.contract` - Documentation creation
-- `sample-contract.md` - Example contract structure
+## Contracts Reference
 
-### 📝 **Prompts** (`prompts/`)
-Use standardized prompt templates for consistent, high-quality outputs:
+**Available**: `process.contract`, `analyze.contract`, `document.contract`
 
+Each contract specifies:
+- Required inputs
+- Expected outputs
+- Validation gates
+- Success criteria
+- Error handling
+
+**Pattern**: Copy relevant contract to your pack, follow its specifications.
+
+---
+
+## Prompts Reference
+
+**Available templates** (read just-in-time):
 - `discover.md` - Systematic exploration and mapping
 - `schema_extract.md` - Data structure documentation
 - `policy_apply.md` - Compliance and governance
-- `cost_discipline.md` - Resource optimization analysis
-- `handoff_note.md` - Knowledge transfer documentation
-- `postmortem.md` - Learning-focused retrospectives
-- `verification_checklist.md` - Quality assurance validation
+- `cost_discipline.md` - Resource optimization
+- `handoff_note.md` - Knowledge transfer
+- `postmortem.md` - Retrospective analysis
+- `verification_checklist.md` - Quality validation
 
-### 📦 **Context Packs** (`packs/`)
-When executing work cycles:
+**Pattern**: Copy relevant prompt to your pack when needed.
 
-1. **Create a context pack** in `packs/` with format: `packs/pack-YYYYMMDD-HHMMSS/`
-2. **Include all necessary context**: inputs, configurations, contract references
-3. **Document with meta.yaml**: See `packs/_sample_cycle/meta.yaml` for structure
-4. **Keep packs self-contained**: Everything needed for reproduction
+---
 
-### 🔄 **Cycle Management**
-- **Current cycle**: Check `cycles/current` for active cycle ID
-- **Update when starting new cycle**: Echo new cycle ID to `cycles/current`
-- **Reference in all work**: Use cycle ID consistently across activities
+## Context Packs
 
-## Execution Workflow
+**Structure**: `packs/pack-YYYYMMDD-HHMMSS/`
 
-### 1. **Understand the Context**
-- Read the current cycle: `cat cycles/current`
-- Review applicable contracts in `contracts/`
-- Check project configuration in `project/` (if this is project-specific work)
+**Must include**:
+- `meta.yaml` - Pack metadata (see `_sample_cycle/meta.yaml` for structure)
+- Contract reference
+- Input data or references
+- Configuration files
 
-### 2. **Plan Your Work**
-- Choose appropriate contract and prompt templates
-- Create context pack if needed: `packs/pack-YYYYMMDD-HHMMSS/`
-- Document your plan in the pack's `meta.yaml`
+**Purpose**: Complete reproducibility - anyone should be able to recreate your work from the pack.
 
-### 3. **Execute Work**
-- Follow contract specifications
-- Use standardized prompt templates
-- Maintain detailed logs of activities
-- Generate outputs in `outbox/`
+---
 
-### 4. **Document and Log**
-- **Update `ledger/runs.csv`** with execution details:
-  ```csv
-  timestamp,session_id,cycle_id,contract_ref,agent_id,tokens_or_runtime,status,notes
-  ```
-- **Add significant events** to `ledger/CHANGELOG_TIMELINE.md`
-- **Save outputs** to `outbox/` with clear naming
-- **Update context pack** with final status and results
+## Audit Trail Requirements
+
+### ledger/runs.csv
+```csv
+timestamp,session_id,cycle_id,contract_ref,agent_id,tokens_or_runtime,status,notes
+```
+
+**Always log**: Every execution session
+
+### ledger/CHANGELOG_TIMELINE.md
+**Log when**: Significant events, milestones, changes
+
+**Format**:
+```markdown
+## Event Title
+**Date:** YYYY-MM-DD
+**Event:** Brief description
+**Details:** Additional context
+```
+
+---
 
 ## Key Principles
 
-### 🎯 **Domain Neutrality**
+### Domain Neutrality
 - Use generic, cross-industry language
-- Avoid domain-specific terms or examples
-- Keep templates and outputs broadly applicable
-- Focus on patterns and structures, not specific implementations
+- Avoid domain-specific terms
+- Keep templates broadly applicable
 
-### 🔄 **Reproducibility**
-- Document all inputs, configurations, and dependencies
-- Maintain clear audit trails
-- Bundle context completely for future reproduction
-- Version all significant changes
+### Reproducibility
+- Bundle complete context in packs
+- Document all inputs and configurations
+- Maintain clear provenance
 
-### 📊 **Auditability**
-- Log all activities in `ledger/runs.csv`
+### Auditability
+- Log every activity
 - Document decisions and rationale
-- Maintain provenance for all outputs
-- Enable future review and analysis
+- Enable future review
 
-### 🤝 **Collaboration**
-- Use clear, standardized interfaces (contracts)
-- Document work for easy handoff
-- Maintain consistent naming and organization
-- Enable team coordination through shared structure
-
-## Common Patterns
-
-### Starting a New Analysis
-```bash
-# 1. Check current cycle
-cat cycles/current
-
-# 2. Create context pack
-mkdir packs/pack-20251004-analysis
-
-# 3. Choose contract and prompt
-cp contracts/analyze.contract packs/pack-20251004-analysis/
-cp prompts/discover.md packs/pack-20251004-analysis/
-
-# 4. Execute work following contract
-# [perform analysis work]
-
-# 5. Log the run
-echo "2025-10-04T14:30:00Z,session-001,sample-cycle,analyze.contract,ai-agent,5min,completed,Discovery analysis of project structure" >> ledger/runs.csv
-```
-
-### Creating Documentation
-```bash
-# 1. Use documentation contract
-cp contracts/document.contract packs/pack-20251004-docs/
-
-# 2. Follow verification checklist
-cp prompts/verification_checklist.md packs/pack-20251004-docs/
-
-# 3. Generate outputs to outbox
-# [create documentation]
-cp final-docs.md outbox/
-
-# 4. Update changelog
-echo "Added comprehensive documentation suite" >> ledger/CHANGELOG_TIMELINE.md
-```
+---
 
 ## Project Integration
 
-If working within a specific project (not just CXS maintenance):
+**When working on project-specific tasks**, reference:
+- `project/manifest.yaml` - Project metadata and constraints
+- `project/policies.yaml` - Project standards
+- `project/data_contracts.yaml` - Data interfaces
+- `project/stack_profile.yaml` - Technology context
+- `project/structure_map.yaml` - Organization map
+- `project/functional_requirements.yaml` - Requirements
 
-1. **Review `project/` templates** for project-specific guidance
-2. **Check `project/manifest.yaml`** for project metadata and constraints
-3. **Follow `project/policies.yaml`** for project-specific standards
-4. **Reference `project/data_contracts.yaml`** for data interfaces
-5. **Use `project/stack_profile.yaml`** to understand technology context
+**Pattern**: Read only what's needed for your current task.
 
-## Quality Standards
+---
 
-### Before Completing Any Work:
+## Quality Checklist
+
+Before completing work, verify:
 - [ ] Contract requirements satisfied
-- [ ] Outputs placed in `outbox/` with clear names
+- [ ] Outputs in `outbox/` with clear naming
 - [ ] Execution logged in `ledger/runs.csv`
-- [ ] Context pack updated with final status
-- [ ] Significant changes noted in `ledger/CHANGELOG_TIMELINE.md`
-- [ ] All work maintains domain neutrality
-- [ ] Documentation is clear and complete
+- [ ] Context pack updated with results
+- [ ] Significant changes in `ledger/CHANGELOG_TIMELINE.md`
+- [ ] Domain neutrality maintained
+- [ ] Documentation complete
 
-## Need Help?
+---
 
-- **Examples**: See `sample-contract.md` and `sample-prompt.md`
-- **Templates**: All standard templates are in `prompts/`
-- **Project Guidance**: Check `project/` folder for project-specific information
-- **Sample Pack**: Review `packs/_sample_cycle/meta.yaml` for structure example
+## Examples & Templates
+
+- **Contract template**: `contracts/sample-contract.md`
+- **Prompt template**: `prompts/sample-prompt.md`
+- **Pack structure**: `packs/_sample_cycle/meta.yaml`
+- **Quick workflow**: `QUICKSTART.md`
+
+---
 
 ## Remember
 
-CXS is designed to be **infrastructure, not application**. Your role is to:
-- Work within the system, not modify the system
-- Maintain the neutrality and reusability of CXS
-- Focus on your specific task while respecting CXS patterns
-- Document your work for future agents and humans
-- Preserve the ability for any project to use this CXS instance
+✅ **DO**:
+- Work within the system
+- Maintain neutrality and reusability
+- Focus on your task, respect CXS patterns
+- Document for future agents/humans
+- Read files just-in-time to conserve tokens
 
-**Welcome to productive, organized, auditable work within CXS!**
+❌ **DON'T**:
+- Modify CXS infrastructure itself
+- Use domain-specific language in CXS files
+- Read all templates upfront (token waste)
+- Skip logging and audit trails
