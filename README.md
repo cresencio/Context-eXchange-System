@@ -32,26 +32,27 @@ cd Context-eXchange-System
 cp -r Context-eXchange-System/cxs/ /path/to/your/project/
 ```
 
-### 3. **Onboard Your AI Agent**
+### 3. **Onboard Your AI Agent (Token-Efficient)**
 Copy and paste this prompt to your AI agent:
 
 ```
 🤖 **AI Agent Onboarding Prompt** (Copy/Paste This)
 
-You are now working with the Context eXchange System (CXS). Please read and understand the cxs/agents.md file, which contains your complete orientation guide.
+You are now working with the Context eXchange System (CXS).
 
-Key points:
-- CXS is domain-neutral infrastructure for context management
-- Follow contracts in cxs/contracts/ for work specifications  
-- Use prompt templates in cxs/prompts/ for consistent outputs
-- Create context packs in cxs/packs/ for reproducible work
-- Log all activities in cxs/ledger/runs.csv
-- Place outputs in cxs/outbox/
-- Maintain domain neutrality and audit trails
+⚡ TOKEN-EFFICIENT ONBOARDING:
+1. Read cxs/QUICKSTART.md first (~400 tokens) to get operational immediately
+2. Only read cxs/agents.md if you need comprehensive reference details
+3. Load contracts/prompts just-in-time as needed
 
-Current cycle: Check cxs/cycles/current for the active cycle ID.
+CXS Core Pattern:
+- Check cycle: cat cxs/cycles/current
+- Pick contract from cxs/contracts/
+- Create pack in cxs/packs/
+- Do work → outputs to cxs/outbox/
+- Log to cxs/ledger/runs.csv
 
-Start by reading cxs/agents.md for complete instructions, then proceed with your assigned tasks following CXS patterns.
+Start with cxs/QUICKSTART.md for immediate productivity with minimal token spend.
 ```
 
 ### 4. **Start Your First Cycle**
@@ -69,8 +70,9 @@ Context-eXchange-System/
 ├── README.md                    # This file - repository overview
 ├── LICENSE                      # MIT license
 └── cxs/                        # 👈 The complete CXS framework
-    ├── agents.md               # AI agent orientation guide
-    ├── README.md               # CXS user documentation  
+    ├── QUICKSTART.md           # ⚡ Token-efficient quick start (~400 tokens)
+    ├── agents.md               # AI agent reference guide
+    ├── README.md               # CXS user documentation
     ├── LICENSE                 # CXS license
     ├── contracts/              # Interface specifications
     │   ├── process.contract    # Generic process execution
@@ -193,6 +195,8 @@ echo "$(date -Iseconds),deploy-001,$(cat cxs/cycles/current),process.contract,de
 - **Knowledge Retention**: Institutional knowledge preserved in structured format
 
 ### For AI Agents
+- **Token Efficient**: Quick onboarding in ~400 tokens via QUICKSTART.md
+- **Just-In-Time Loading**: Read contracts/prompts only when needed
 - **Consistent Interface**: Same patterns across all projects and domains
 - **Complete Context**: All necessary information bundled and accessible
 - **Quality Gates**: Built-in validation and verification processes
@@ -206,10 +210,14 @@ echo "$(date -Iseconds),deploy-001,$(cat cxs/cycles/current),process.contract,de
 
 ## 📚 Documentation
 
-- **`cxs/agents.md`** - Complete AI agent orientation guide
+### AI Agent Onboarding (Token-Optimized)
+- **`cxs/QUICKSTART.md`** ⚡ - Start here! (~400 tokens, immediate productivity)
+- **`cxs/agents.md`** - Complete reference guide (read if needed)
+
+### Templates & Guides
 - **`cxs/README.md`** - CXS user documentation and examples
-- **`cxs/contracts/`** - Interface specifications and examples
-- **`cxs/prompts/`** - Standardized prompt templates
+- **`cxs/contracts/`** - Interface specifications (process, analyze, document)
+- **`cxs/prompts/`** - Standardized prompt templates (discover, handoff, etc.)
 - **`cxs/project/`** - Project configuration templates
 
 ## 🤝 Contributing
