@@ -2,6 +2,12 @@
 
 A lightweight, stack-agnostic framework for managing context between humans, AI agents, and tools.
 
+## ⚡ Quick Start for AI Agents
+
+**Token-efficient onboarding**: Read `QUICKSTART.md` (~400 tokens) to get operational immediately.
+
+For comprehensive reference details, read `agents.md` (~1000 tokens).
+
 ## Overview
 
 The Context eXchange System (CXS) provides a standardized structure for:
@@ -10,10 +16,15 @@ The Context eXchange System (CXS) provides a standardized structure for:
 - **Sessions**: Track execution cycles and maintain state across runs
 - **Ledgers**: Record all activities for audit trails and reproducibility
 
+**Design Philosophy**: CXS optimizes for token efficiency in AI agent workflows through just-in-time documentation loading.
+
 ## Directory Structure
 
 ```
 cxs/
+├── QUICKSTART.md  # ⚡ Token-efficient quick start (~400 tokens)
+├── agents.md      # AI agent reference guide (~1000 tokens)
+├── README.md      # This file - user documentation
 ├── contracts/     # Contract definitions and interfaces
 ├── packs/         # Context packs bundled for execution
 ├── outbox/        # Output artifacts and results
@@ -88,11 +99,12 @@ Append significant events to `cxs/ledger/CHANGELOG_TIMELINE.md`:
 
 ## Principles
 
-1. **Stack Agnostic**: Works with any programming language or tool
-2. **Reproducible**: All runs can be recreated from context packs
-3. **Auditable**: Complete history in ledgers
-4. **Collaborative**: Clear contracts enable team coordination
-5. **Explainable**: Documentation and logs explain all decisions
+1. **Token Efficient**: Optimized for minimal AI agent onboarding cost
+2. **Stack Agnostic**: Works with any programming language or tool
+3. **Reproducible**: All runs can be recreated from context packs
+4. **Auditable**: Complete history in ledgers
+5. **Collaborative**: Clear contracts enable team coordination
+6. **Explainable**: Documentation and logs explain all decisions
 
 ## Best Practices
 
@@ -104,10 +116,18 @@ Append significant events to `cxs/ledger/CHANGELOG_TIMELINE.md`:
 
 ## Getting Started
 
+### For AI Agents (Token-Optimized)
+1. **Start here**: Read `QUICKSTART.md` (~400 tokens)
+2. Check current cycle: `cat cycles/current`
+3. Pick contract from `contracts/` (read just-in-time)
+4. Use prompt templates from `prompts/` (read just-in-time)
+5. Create context pack, execute, log to `ledger/runs.csv`
+
+### For Humans
 1. Review sample contracts in `contracts/`
 2. Review sample prompts in `prompts/`
-3. Create your first context pack
-4. Execute and log your run
+3. Create your first context pack in `packs/`
+4. Execute and log your run to `ledger/runs.csv`
 5. Review outputs in `outbox/`
 6. Archive completed cycles when done
 
