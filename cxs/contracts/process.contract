@@ -66,4 +66,4 @@ This contract defines the expectations and interface for executing a process tha
 - This is a generic process contract template
 - Customize validation gates and success criteria for specific use cases
 - Ensure all stakeholders review and approve contract specifications
-- Version contracts when making breaking changes to interface
+- Version contracts when making breaking changes to interface.
