@@ -82,6 +82,7 @@ Each contract specifies:
 - `policy_apply.md` - Compliance and governance
 - `cost_discipline.md` - Resource optimization
 - `handoff_note.md` - Knowledge transfer
+- `handoff_status.md` - Context awareness check
 - `postmortem.md` - Retrospective analysis
 - `verification_checklist.md` - Quality validation
 
