@@ -46,7 +46,7 @@ You are now working with the Context eXchange System (CXS).
 3. Load contracts/prompts just-in-time as needed
 
 CXS Core Pattern:
-- Check cycle: cat cxs/cycles/current
+- Check cycle: Read cxs/cycles/current
 - Pick contract from cxs/contracts/
 - Create pack in cxs/packs/
 - Do work → outputs to cxs/outbox/
@@ -57,11 +57,16 @@ Start with cxs/QUICKSTART.md for immediate productivity with minimal token spend
 
 ### 4. **Start Your First Cycle**
 ```bash
-# Update the current cycle
+# Linux/macOS
 echo "project-kickoff-$(date +%Y%m%d)" > cxs/cycles/current
-
-# Your agent can now begin work following CXS patterns
 ```
+
+```powershell
+# Windows PowerShell
+"project-kickoff-$(Get-Date -Format 'yyyyMMdd')" | Out-File cxs/cycles/current -Encoding utf8
+```
+
+Your agent can now begin work following CXS patterns.
 
 ## 📁 Repository Structure
 
@@ -87,6 +92,7 @@ Context-eXchange-System/
     │   ├── policy_apply.md     # Compliance framework
     │   ├── cost_discipline.md  # Resource optimization
     │   ├── handoff_note.md     # Knowledge transfer
+    │   ├── handoff_status.md   # Context awareness check
     │   ├── postmortem.md       # Retrospective analysis
     │   ├── verification_checklist.md # Quality assurance
     │   └── sample-prompt.md    # Prompt template example
