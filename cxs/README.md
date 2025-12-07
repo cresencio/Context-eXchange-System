@@ -118,7 +118,7 @@ Append significant events to `cxs/ledger/CHANGELOG_TIMELINE.md`:
 
 ### For AI Agents (Token-Optimized)
 1. **Start here**: Read `QUICKSTART.md` (~400 tokens)
-2. Check current cycle: `cat cycles/current`
+2. Check current cycle: Read `cycles/current`
 3. Pick contract from `contracts/` (read just-in-time)
 4. Use prompt templates from `prompts/` (read just-in-time)
 5. Create context pack, execute, log to `ledger/runs.csv`
