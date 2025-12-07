@@ -81,8 +81,8 @@ Context packs bundle all necessary context for reproducible execution:
 All runs should be logged to `cxs/ledger/runs.csv`:
 
 ```csv
-cycle_id,run_id,timestamp,status,description,context_pack,output_pack
-cycle-001,run-001,2025-01-15T10:30:00Z,completed,Initial data processing,pack-001,out-001
+timestamp,session_id,cycle_id,contract_ref,agent_id,tokens_or_runtime,status,notes
+2025-01-15T10:30:00Z,run-001,cycle-001,process.contract,ai-agent,15min,completed,Initial data processing
 ```
 
 ### Logging Events
