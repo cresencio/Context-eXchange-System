@@ -51,7 +51,7 @@ CXS provides neutral infrastructure that any project can adopt for:
 
 ## Core Workflow
 
-1. **Check cycle**: `cat cycles/current`
+1. **Check cycle**: Read `cycles/current`
 2. **Select contract**: Choose from `contracts/`
 3. **Create pack**: `packs/pack-YYYYMMDD-HHMMSS/`
 4. **Execute**: Follow contract → outputs to `outbox/`
