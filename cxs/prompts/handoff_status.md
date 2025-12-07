@@ -9,18 +9,16 @@
 ## Workflow
 
 ### 1. Identify Current Cycle
-```bash
-cat cycles/current
-```
+
+Read the file `cycles/current` to determine the active cycle.
 
 **Check:**
 - What cycle ID is active?
 - Does it indicate project phase or timeline?
 
 ### 2. Review Recent Activity
-```bash
-tail -n 5 ledger/runs.csv
-```
+
+Read the last 5 entries from `ledger/runs.csv`.
 
 **Look for:**
 - Latest timestamp (when was last work done?)
@@ -30,9 +28,8 @@ tail -n 5 ledger/runs.csv
 - Notes (brief description of work)
 
 ### 3. Check Outbox for Deliverables
-```bash
-ls -lt outbox/ | head -n 10
-```
+
+List files in `outbox/` sorted by modification date.
 
 **Examine:**
 - Most recent files by modification date
@@ -40,9 +37,8 @@ ls -lt outbox/ | head -n 10
 - Understand what was produced
 
 ### 4. Identify Context Packs
-```bash
-ls -lt packs/ | head -n 5
-```
+
+List folders in `packs/` sorted by date.
 
 **If packs exist:**
 - Check most recent pack's `meta.yaml`
@@ -78,27 +74,29 @@ Ready for: [next logical step based on recent work]
 ## Example Response
 
 ```
-Current Cycle: sample-cycle
+Current Cycle: feature-dashboard-20251207
 
 Recent Work (Last 2 Entries):
-- 2025-10-04T13:23:14: Created quick_prediction_report.R helper script
-  for generating formatted CSV prediction reports (~58k tokens, completed)
+- 2025-12-07T14:30:00Z: Implemented data validation module
+  with schema checks and error handling (~45min, completed)
+- 2025-12-07T10:15:00Z: Created initial project structure
+  and configuration files (~20min, completed)
 
 Latest Deliverable:
-- File: outbox/quick_prediction_report_deliverable.md
-- Summary: Helper script that generates formatted CSV reports from existing
-  NFL prediction data, matching Shiny app display format
+- File: outbox/data_validation_deliverable.md
+- Summary: Validation module that checks input data against
+  defined schemas before processing
 - Artifacts:
-  - scripts/helpers/quick_prediction_report.R
-  - predictions/week1_2025_report.csv (16 games)
-  - predictions/week5_2025_report.csv (14 games)
+  - src/validation/schema_validator.py
+  - tests/test_validation.py
+  - docs/validation_guide.md
 
 System State:
-- Active context packs: 0 (deliverable-only workflow)
-- Total logged runs: 1
-- Last activity: Today (current session)
+- Active context packs: 1
+- Total logged runs: 2
+- Last activity: 2 hours ago
 
-Ready for: Next task assignment or continuation of prediction report workflow
+Ready for: Integration testing or next feature implementation
 ```
 
 ---
