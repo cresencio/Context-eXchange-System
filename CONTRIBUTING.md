@@ -36,6 +36,7 @@ Context packs bundle all inputs, configurations, and references for reproducible
 
 ### Manual Pack Creation
 
+#### Linux/macOS (Bash)
 ```bash
 # Create pack directory with timestamp
 PACK="cxs/packs/pack-$(date +%Y%m%d-%H%M%S)"
@@ -55,7 +56,27 @@ outputs: []
 EOF
 ```
 
-### Using the CLI Tool
+#### Windows (PowerShell)
+```powershell
+# Create pack directory with timestamp
+$PACK = "cxs/packs/pack-$(Get-Date -Format 'yyyyMMdd-HHmmss')"
+New-Item -ItemType Directory -Path $PACK -Force
+
+# Copy relevant contract
+Copy-Item cxs/contracts/process.contract $PACK/
+
+# Create metadata file
+@"
+cycle_id: $(Get-Content cxs/cycles/current)
+created: $(Get-Date -Format 'o')
+contract: process.contract
+description: "Brief description of this pack's purpose"
+inputs: []
+outputs: []
+"@ | Out-File "$PACK/meta.yaml" -Encoding utf8
+```
+
+### Using the CLI Tool (Cross-Platform)
 
 ```bash
 # Create a new pack with scaffolding
@@ -98,12 +119,19 @@ timestamp,session_id,cycle_id,contract_ref,agent_id,tokens_or_runtime,status,not
 
 ### Manual Logging
 
+#### Linux/macOS (Bash)
 ```bash
 # Append a run entry
 echo "$(date -Iseconds),session-001,$(cat cxs/cycles/current),process.contract,developer,15min,completed,Task description" >> cxs/ledger/runs.csv
 ```
 
-### Using the CLI Tool
+#### Windows (PowerShell)
+```powershell
+# Append a run entry
+"$(Get-Date -Format 'o'),session-001,$(Get-Content cxs/cycles/current),process.contract,developer,15min,completed,Task description" | Add-Content cxs/ledger/runs.csv
+```
+
+### Using the CLI Tool (Cross-Platform)
 
 ```bash
 # Log a run with validation
