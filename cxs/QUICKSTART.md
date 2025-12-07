@@ -4,9 +4,9 @@
 
 ## Core Workflow (5 Steps)
 
-1. **Check current cycle**: `cat cycles/current`
+1. **Check current cycle**: Read `cycles/current`
 2. **Select contract**: Choose from `contracts/[process|analyze|document].contract`
-3. **Create context pack**: `mkdir packs/pack-$(date +%Y%m%d-%H%M%S)`
+3. **Create context pack**: Create folder in `packs/` (e.g., `pack-YYYYMMDD-HHMMSS`)
 4. **Execute work**: Follow contract → place outputs in `outbox/`
 5. **Log execution**: Append to `ledger/runs.csv`
 
@@ -52,6 +52,7 @@ timestamp,session_id,cycle_id,contract_ref,agent_id,tokens_or_runtime,status,not
 - `policy_apply.md` - Compliance framework
 - `cost_discipline.md` - Resource optimization
 - `handoff_note.md` - Knowledge transfer
+- `handoff_status.md` - Context awareness check
 - `postmortem.md` - Retrospective analysis
 - `verification_checklist.md` - Quality validation
 
@@ -65,6 +66,7 @@ timestamp,session_id,cycle_id,contract_ref,agent_id,tokens_or_runtime,status,not
 
 ## Quick Example
 
+### Linux/macOS (Bash)
 ```bash
 # 1. Check cycle
 CYCLE=$(cat cycles/current)
@@ -81,6 +83,25 @@ cp contracts/process.contract $PACK/
 
 # 5. Log
 echo "$(date -Iseconds),run-001,$CYCLE,process.contract,ai-agent,10min,completed,Task completed" >> ledger/runs.csv
+```
+
+### Windows (PowerShell)
+```powershell
+# 1. Check cycle
+$CYCLE = Get-Content cycles/current
+
+# 2. Create pack
+$PACK = "packs/pack-$(Get-Date -Format 'yyyyMMdd-HHmmss')"
+New-Item -ItemType Directory -Path $PACK -Force
+
+# 3. Copy relevant contract
+Copy-Item contracts/process.contract $PACK/
+
+# 4. Do work (outputs to outbox/)
+# [your work here]
+
+# 5. Log
+"$(Get-Date -Format 'o'),run-001,$CYCLE,process.contract,ai-agent,10min,completed,Task completed" | Add-Content ledger/runs.csv
 ```
 
 **Ready to work? Check `cycles/current` and begin!**
