@@ -5,7 +5,7 @@
 - Contract and prompt templates are consistently organized, giving contributors ready-made patterns for processes, analysis, documentation, and quality checks.
 
 ## Findings & Recommendations
-- **Agent neutrality**: Removed the `.claude` directory and added it to `.gitignore` to avoid implying Claude-specific tooling. Keep future agent-specific configs out of version control to maintain the "agent agnostic" goal.
+- **Agent neutrality**: Removed the `.claude` directory to avoid implying Claude-specific tooling. 
 - **Ledger schema consistency**: The canonical run log header in `cxs/ledger/runs.csv` is now reflected in the logging example within `cxs/README.md`. Consider adding a lightweight validation script or CI check to ensure appended rows continue to follow the `timestamp,session_id,cycle_id,contract_ref,agent_id,tokens_or_runtime,status,notes` schema.
 - **Contract template polish**: The `process.contract` template now terminates cleanly with a complete guidance line. Applying a quick formatting pass (e.g., Markdown lint) across contracts would keep them uniform and prevent prompt pollution when agents stream the files.
 
