@@ -116,12 +116,100 @@ Or add to CI/CD pipeline:
 
 ---
 
+## 🐍 cxs_cli.py
+
+**Purpose**: Python CLI tool for automating common CXS operations.
+
+### Installation
+
+No installation required - uses Python 3 standard library only.
+
+### Commands
+
+#### `new-cycle` - Create a New Cycle
+
+```bash
+# Create with auto-generated name
+python cxs/tools/cxs_cli.py new-cycle
+
+# Create with custom name
+python cxs/tools/cxs_cli.py new-cycle --name "feature-auth"
+
+# Create and log to changelog
+python cxs/tools/cxs_cli.py new-cycle --name "feature-auth" --description "Auth implementation" --log-changelog
+```
+
+#### `new-pack` - Create a Context Pack
+
+```bash
+# Create with default (process) contract
+python cxs/tools/cxs_cli.py new-pack
+
+# Create with specific contract
+python cxs/tools/cxs_cli.py new-pack --contract analyze --description "Data analysis task"
+
+# Create with custom name
+python cxs/tools/cxs_cli.py new-pack --name "analysis" --contract analyze
+```
+
+#### `log-run` - Log a Run with Validation
+
+```bash
+python cxs/tools/cxs_cli.py log-run \
+  --session "session-001" \
+  --contract "process.contract" \
+  --agent "claude" \
+  --runtime "5min" \
+  --status "completed" \
+  --notes "Completed data processing"
+```
+
+Valid status values: `completed`, `failed`, `partial`, `in-progress`, `cancelled`
+
+#### `validate` - Validate the Ledger
+
+```bash
+python cxs/tools/cxs_cli.py validate
+```
+
+#### `status` - Show CXS Status
+
+```bash
+python cxs/tools/cxs_cli.py status
+```
+
+Output:
+```
+╔════════════════════════════════════════╗
+║          CXS Status                    ║
+╚════════════════════════════════════════╝
+
+📍 Current Cycle: feature-auth-20251207
+📦 Context Packs: 5
+📊 Logged Runs: 12
+📤 Outputs: 3
+
+📋 Recent Runs:
+   • [completed] Implemented user authentication
+   • [completed] Added password validation
+   • [in-progress] Working on session management
+```
+
+### Error Handling
+
+The CLI validates all inputs before writing:
+- Checks ledger header matches expected schema
+- Validates timestamp format
+- Ensures required fields are not empty
+- Validates status is in allowed list
+
+---
+
 ## 🔮 Future Tools
 
 **Planned additions**:
 - `validate-schemas.py` - JSON Schema validation with detailed error messages
 - `cxs-init.sh` - Interactive setup wizard for new projects
-- `pack-builder.py` - Automated context pack creation
 - `ledger-query.py` - Query and analyze ledger data
 - `snapshot-create.sh` - Create pack snapshots (Milestone 3)
 

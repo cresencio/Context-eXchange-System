@@ -68,6 +68,8 @@ echo "project-kickoff-$(date +%Y%m%d)" > cxs/cycles/current
 ```
 Context-eXchange-System/
 ├── README.md                    # This file - repository overview
+├── CONTRIBUTING.md              # Contribution guidelines
+├── Makefile                     # Automation commands
 ├── LICENSE                      # MIT license
 └── cxs/                        # 👈 The complete CXS framework
     ├── QUICKSTART.md           # ⚡ Token-efficient quick start (~400 tokens)
@@ -96,6 +98,11 @@ Context-eXchange-System/
     │   ├── functional_requirements.yaml # Requirements spec
     │   ├── data_contracts.yaml # Data interfaces
     │   └── policies.yaml       # Standards and policies
+    ├── tools/                  # Automation utilities
+    │   ├── cxs_cli.py          # Python CLI for CXS operations
+    │   ├── validate_ledger.py  # Ledger schema validation
+    │   ├── validate-cxs.sh     # Comprehensive health check
+    │   └── README.md           # Tools documentation
     ├── packs/                  # Context pack storage
     │   └── _sample_cycle/      # Example context pack
     ├── cycles/                 # Cycle management
@@ -104,7 +111,7 @@ Context-eXchange-System/
     │   ├── runs.csv            # Execution log
     │   └── CHANGELOG_TIMELINE.md # Event timeline
     ├── outbox/                 # Output artifacts
-    ├── archive/                # Historical data
+    └── archive/                # Historical data
 ```
 
 ## 🎨 Use Cases
@@ -208,6 +215,55 @@ echo "$(date -Iseconds),deploy-001,$(cat cxs/cycles/current),process.contract,de
 - **Scalable Organization**: Structure grows with project complexity
 - **Future-Proof**: Domain-neutral design adapts to changing requirements
 
+## 🛠️ Automation & Tools
+
+CXS includes CLI tools and automation for common workflows.
+
+### Python CLI Tool
+
+```bash
+# Create a new cycle
+python cxs/tools/cxs_cli.py new-cycle --name "feature-auth"
+
+# Create a context pack with scaffolding
+python cxs/tools/cxs_cli.py new-pack --contract analyze --description "Data analysis"
+
+# Log a run with validation
+python cxs/tools/cxs_cli.py log-run \
+  --session "session-001" \
+  --contract "process.contract" \
+  --agent "claude" \
+  --status "completed" \
+  --notes "Task completed"
+
+# Check CXS status
+python cxs/tools/cxs_cli.py status
+
+# Validate ledger
+python cxs/tools/cxs_cli.py validate
+```
+
+### Makefile Commands
+
+```bash
+make validate      # Run all validation checks
+make lint          # Run all linters (markdown, contracts, prompts)
+make lint-docs     # Lint markdown documentation
+make status        # Show CXS status
+make new-cycle     # Create new cycle (interactive)
+make check         # Quick health check
+```
+
+### Validation Scripts
+
+```bash
+# Comprehensive health check
+bash cxs/tools/validate-cxs.sh
+
+# Validate ledger schema
+python cxs/tools/validate_ledger.py
+```
+
 ## 📚 Documentation
 
 ### AI Agent Onboarding (Token-Optimized)
@@ -222,10 +278,18 @@ echo "$(date -Iseconds),deploy-001,$(cat cxs/cycles/current),process.contract,de
 
 ## 🤝 Contributing
 
+See **[CONTRIBUTING.md](CONTRIBUTING.md)** for detailed guidelines on:
+- Starting new cycles
+- Creating context packs
+- Logging runs to the ledger
+- Packaging outputs
+
+### Quick Contribution Workflow
+
 1. Fork the repository
 2. Create a feature branch  
 3. Make changes while maintaining domain neutrality
-4. Test with multiple project types
+4. Run `make validate` to ensure quality
 5. Submit a pull request
 
 ### Development Principles

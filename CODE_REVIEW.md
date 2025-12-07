@@ -11,5 +11,5 @@
 
 ## Suggested Next Steps
 - Add a brief CONTRIBUTING note describing how to start new cycles, where to log runs, and how to package outputs so that human and AI contributors share the same expectations.
-- Provide a small automation script (shell or Python) to open a new cycle, scaffold a pack directory, and append a validated ledger entry; this will reduce manual errors and demonstrate end-to-end usage.
-- Consider a minimal test or check (even a `make lint-docs`) to catch formatting drifts in contracts and prompts as the library evolves.
+- Provide a small automation script (Python) to open a new cycle, scaffold a pack directory, and append a validated ledger entry; this will reduce manual errors and demonstrate end-to-end usage.
+- Add a minimal test or check (even a `make lint-docs`) to catch formatting drifts in contracts and prompts as the library evolves.
